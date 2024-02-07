@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const center = { lat: 0, lng: 0 };
 const zoom = 2;
 
-export default function MyMapComponent({ setLat, setLng }) {
+export default function MyMapComponent({ setLatLng, setLat, setLng }) {
   const ref = useRef();
   const [map, setMap] = useState();
 
@@ -17,6 +17,7 @@ export default function MyMapComponent({ setLat, setLng }) {
   useEffect(() => {
     const onClick = (e) => {
       const latLngJSON = JSON.stringify(e.latLng.toJSON(), null, 2);
+      setLatLng(e.latLng);
       JSON.parse(latLngJSON, (key, value) => {
         if (key === "lat") {
           setLat(value);
@@ -31,7 +32,7 @@ export default function MyMapComponent({ setLat, setLng }) {
         map.addListener("click", onClick);
       }
     }
-  }, [map, setLat, setLng]);
+  }, [map, setLat, setLng, setLatLng]);
 
   return <div ref={ref} style={{ width: "600px", height: "350px" }} />;
 }
