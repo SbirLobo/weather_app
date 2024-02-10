@@ -6,7 +6,7 @@ export default function Marker(options) {
 
   useEffect(() => {
     if (!marker) {
-      setMarker(new Marker());
+      setMarker(new window.google.maps.Marker());
     }
 
     // remove marker from map on unmount
