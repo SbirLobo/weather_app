@@ -3,12 +3,14 @@ import { useState } from "react";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import MyMapComponent from "./components/MyMapComponent";
 import WeatherInfos from "./components/WeatherInfos";
+// import { Marker } from "@react-google-maps/api";
 import Marker from "./components/Marker";
 
 function App() {
   const [latLng, setLatLng] = useState();
   const [lat, setLat] = useState(44.83741010727143);
   const [lng, setLng] = useState(-0.5791063934285434);
+  const [map, setMap] = useState();
 
   const VITE_GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
@@ -22,10 +24,6 @@ function App() {
         return <MyMapComponent />;
     }
   };
-  if (latLng) {
-    console.log(latLng);
-    console.log(JSON.stringify(latLng.toJSON(), null, 2));
-  }
 
   return (
     <>
@@ -33,8 +31,16 @@ function App() {
         <p className="text-3xl font-bold underline">Weather app</p>
 
         <Wrapper apiKey={VITE_GOOGLE_API_KEY} render={render}>
-          <MyMapComponent setLatLng={setLatLng} setLat={setLat} setLng={setLng}>
-            <Marker position={latLng} latLng={latLng} />
+          <MyMapComponent
+            setLatLng={setLatLng}
+            setLat={setLat}
+            setLng={setLng}
+            lat={lat}
+            lng={lng}
+            map={map}
+            setMap={setMap}
+          >
+            <Marker position={latLng} />
           </MyMapComponent>
         </Wrapper>
 

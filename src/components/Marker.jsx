@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-export default function Marker({ latLng }) {
+export default function Marker(options) {
   const [marker, setMarker] = useState();
-  console.log(marker);
 
   useEffect(() => {
     if (!marker) {
-      setMarker(new google.maps.Marker());
+      setMarker(new Marker());
     }
 
     // remove marker from map on unmount
@@ -18,11 +17,11 @@ export default function Marker({ latLng }) {
     };
   }, [marker]);
 
-  //   useEffect(() => {
-  //     if (marker) {
-  //       marker.setOptions(options);
-  //     }
-  //   }, [marker, latLng]);
+  useEffect(() => {
+    if (marker) {
+      marker.setOptions(options);
+    }
+  }, [marker, options]);
 
   return null;
 }
