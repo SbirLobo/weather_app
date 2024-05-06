@@ -65,7 +65,11 @@ export default function MyMapComponent({
 
   return (
     <>
-      <div ref={ref} style={{ width: "600px", height: "350px" }} />
+      <div
+        ref={ref}
+        // style={{ width: "600px", height: "350px" }}
+        className="h-[350px] max-sm:w-[240px] sm:w-[600px] md:w-[730px] lg:w-[1000px] xl:w-[1200px]"
+      />
       {Children.map(children, (child) => {
         if (isValidElement(child)) {
           // set the map prop on the child component

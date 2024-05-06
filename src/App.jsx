@@ -27,9 +27,9 @@ function App() {
 
   return (
     <>
-      <main className="flex flex-col gap-8">
-        <p className="text-3xl font-bold underline">Weather app</p>
-
+      <main className="flex flex-col gap-8 h-full w-full">
+        <h1 className="text-3xl font-bold underline">Weather app</h1>
+        {/* <div className="w-10/12 flex flex-col justify-center"> */}
         <Wrapper apiKey={VITE_GOOGLE_API_KEY} render={render}>
           <MyMapComponent
             setLatLng={setLatLng}
@@ -43,6 +43,7 @@ function App() {
             <Marker position={latLng} />
           </MyMapComponent>
         </Wrapper>
+        {/* </div> */}
 
         <WeatherInfos lat={lat} lng={lng} />
       </main>
